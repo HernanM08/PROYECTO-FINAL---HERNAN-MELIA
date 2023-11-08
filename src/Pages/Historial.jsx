@@ -1,6 +1,18 @@
 import { Link } from "react-router-dom"
+import { useState } from "react";
 
 export default function Historial() {
+    
+    const [historialCotizaciones, setHistorialCotizaciones] = useState(
+        JSON.parse(localStorage.getItem("historialCotizaciones")) ?? {
+            fechaCotizacion: "",
+            propiedad: "",
+            ubicacion: "",
+            metros2: "",
+            poliza: "",
+        }
+    )
+
     return (
         <div>
             {" "}
@@ -17,13 +29,15 @@ export default function Historial() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Aquí</td>
-                            <td>verás</td>
-                            <td>las</td>
-                            <td>cotizaciones</td>
-                            <td>realizadas</td>
+                        {historialCotizaciones.map((historialCotizaciones, id) => (
+                        <tr key={id}>
+                            <td>{historialCotizaciones.fechaCotizacion}</td>
+                            <td>{historialCotizaciones.propiedad}</td>
+                            <td>{historialCotizaciones.ubicacion}</td>
+                            <td>{historialCotizaciones.metros2}</td>
+                            <td>{historialCotizaciones.poliza}</td>
                         </tr>
+                        ))}
                     </tbody>
                 </table>
                 <div className="center separador">

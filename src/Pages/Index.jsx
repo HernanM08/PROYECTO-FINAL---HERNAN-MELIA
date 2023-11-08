@@ -13,9 +13,13 @@ export default function Index() {
     }, []);
     
     const [selectedPropiedad, setSelectedPropiedad] = useState("");
+    const [selectedTextPropiedad, setSelectedTextPropiedad] = useState("");
     const propiedadSelectedChange = (e) => {
         setSelectedPropiedad(e.target.value);
-    }
+    const selectedIndex = e.target.selectedIndex;
+    const selectedTextPropiedad = e.target.options[selectedIndex].text;
+        setSelectedTextPropiedad(selectedTextPropiedad)
+    };
 
     const [datosUbicacion, setDatosUbicacion] = useState([]);
 
@@ -24,12 +28,17 @@ export default function Index() {
     }, []);
     
     const [selectedUbicacion, setSelectedUbicacion] = useState("");
+    const [selectedTextUbicacion, setSelectedTextUbicacion] = useState("");
     const ubicacionSelectedChange = (e) => {
-        setSelectedUbicacion(e.target.value)};
+        setSelectedUbicacion(e.target.value);
+    const selectedIndex = e.target.selectedIndex;
+    const selectedTextUbicacion = e.target.options[selectedIndex].text;
+        setSelectedTextUbicacion(selectedTextUbicacion);
+    };
 
-        const [selectMetros2, setSelectMetros2] = useState("");
-        const metrosSeleccionados = ({ target }) => {
-          setSelectMetros2(target.value);
+    const [selectMetros2, setSelectMetros2] = useState("");
+    const metrosSeleccionados = ({ target }) => {
+        setSelectMetros2(target.value);
         };
 
     const [data, setData] = useState({
@@ -42,6 +51,22 @@ export default function Index() {
              setData({ ...data, poliza:poliza });
      };
     
+    const guardarHistorial = () => {
+        const cotizacion = {
+            fechaCotizacion: new Date().toLocaleString(),
+            propiedad: selectedTextPropiedad,
+            ubicacion: selectedTextUbicacion,
+            metros2: selectMetros2,
+            poliza: data.poliza.toFixed(2),
+        };
+
+        const historialCotizaciones = 
+            JSON.parse(localStorage.getItem("historialCotizaciones")) || [];
+        historialCotizaciones.push(cotizacion);
+        localStorage.setItem("historialCotizaciones", JSON.stringify(historialCotizaciones));
+    }
+
+
     return (
         <div>
            <div className="historial">
@@ -84,10 +109,10 @@ export default function Index() {
 
                 <div>
                     <div className="center separador">
-                        <button onClick={cotizarPoliza} className="button button-outline">Cotizar</button>
+                        <button onClick={cotizarPoliza} className="button button-outline">{""}Cotizar{""}</button>
                     </div>
                     <div className="center separador">
-                        <p className="importe">Precio estimado: $ <span id="valorPoliza">{data.poliza.toFixed(2)}</span><span className="guardar ocultar" title="Guardar en historial">💾</span></p>
+                        <p className="importe">Precio estimado: ${""} <span id="valorPoliza">{data.poliza.toFixed(2)}</span><span className="guardar ocultar" onClick={guardarHistorial} title="Guardar en historial"> 💾 </span></p>
                     </div>
                 </div>
 

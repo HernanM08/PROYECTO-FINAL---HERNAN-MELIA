@@ -72,9 +72,9 @@ select, input {
     cursor: pointer;
 }
 
-.ocultar {
+/*.ocultar {
     display: none;
-}
+}*/
 
 button:hover {
     color: whitesmoke !important;
