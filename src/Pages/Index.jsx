@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import Propiedad from "../Components/Propiedad";
+import Ubicacion from "../Components/Ubicacion";
+import Metros2 from "../Components/Metros2";
 import jsonPropiedad from "../propiedad.json";
 import jsonUbicacion from "../ubicacion.json";
 
@@ -66,7 +69,6 @@ export default function Index() {
         localStorage.setItem("historialCotizaciones", JSON.stringify(historialCotizaciones));
     }
 
-
     return (
         <div>
            <div className="historial">
@@ -78,34 +80,22 @@ export default function Index() {
             <div className=" center div-cotizador">
                 <h2 className="center separador">Completa los datos solicitados</h2>
              
-                <div>
-                    <label htmlFor="propiedad">Selecciona el tipo de propiedad</label>
-                    <select value={selectedPropiedad} onChange={propiedadSelectedChange} id="propiedad">
-                        <option value="" disabled>Seleccione</option>
-                        {datosPropiedad.map(( { factor, tipo }, id) => (
-                        <option key={id} value={factor}>
-                            {tipo}
-                        </option>
-                        ))}
-                    </select>
-                </div>
+                <Propiedad
+                selectedPropiedad={selectedPropiedad}
+                propiedadSelectedChange={propiedadSelectedChange}
+                datosPropiedad={datosPropiedad}
+                />
 
-                <div>
-                    <label htmlFor="ubicacion">Selecciona su ubicación</label>
-                    <select value={selectedUbicacion} onChange={ubicacionSelectedChange} id="ubicacion">
-                        <option value="" disabled>Seleccione</option>
-                        {datosUbicacion.map(( { factor, tipo}, id) => (
-                        <option key={id} value={factor}>
-                            {tipo}
-                        </option>
-                        ))}
-                    </select>
-                </div>
+                <Ubicacion
+                selectedUbicacion={selectedUbicacion}
+                ubicacionSelectedChange={ubicacionSelectedChange}
+                datosUbicacion={datosUbicacion}
+                />      
                 
-                <div>
-                    <label htmlFor="metros2">Ingresa los Metros cuadrados:</label>
-                    <input type="number" id="metros2" min="20" max="500" value={selectMetros2} onChange={metrosSeleccionados} required />
-                </div>
+                <Metros2
+                selectMetros2={selectMetros2}
+                metrosSeleccionados={metrosSeleccionados}
+                />
 
                 <div>
                     <div className="center separador">
