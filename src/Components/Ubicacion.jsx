@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function Ubicacion({ selectedUbicacion, ubicacionSelectedChange, datosUbicacion }) {
     return (
       <div>
@@ -14,4 +16,10 @@ function Ubicacion({ selectedUbicacion, ubicacionSelectedChange, datosUbicacion 
     );
   }
   
+  Ubicacion.propTypes = {
+    selectedUbicacion: PropTypes.string.isRequired,
+    ubicacionSelectedChange: PropTypes.string.isRequired,
+    datosUbicacion: PropTypes.string.isRequired,
+  };
+
   export default Ubicacion;

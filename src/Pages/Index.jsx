@@ -50,9 +50,13 @@ export default function Index() {
         });
 
     const cotizarPoliza = () => {
+        if (parseFloat(selectMetros2) >= 20 && parseFloat(selectMetros2) <= 500) {
         const poliza = data.costoM2 * parseFloat(selectedPropiedad) * parseFloat(selectedUbicacion) * parseFloat(selectMetros2);
              setData({ ...data, poliza:poliza });
-     };
+        } else {
+            alert("Ingrese un valor de metros cuadrados entre 20 y 500")
+        }
+    }
     
     const guardarHistorial = () => {
         const cotizacion = {

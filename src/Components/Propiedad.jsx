@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function Propiedad({ selectedPropiedad, propiedadSelectedChange, datosPropiedad }) {
   return (
     <div>
@@ -13,5 +15,11 @@ function Propiedad({ selectedPropiedad, propiedadSelectedChange, datosPropiedad 
     </div>
   );
 }
+
+Propiedad.propTypes = {
+  selectedPropiedad: PropTypes.string.isRequired,
+  propiedadSelectedChange: PropTypes.string.isRequired,
+  datosPropiedad: PropTypes.string.isRequired,
+};
 
 export default Propiedad;

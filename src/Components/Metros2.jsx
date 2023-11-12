@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function Metros2({ selectMetros2, metrosSeleccionados }) {
     return (
       <div>
@@ -6,5 +8,10 @@ function Metros2({ selectMetros2, metrosSeleccionados }) {
       </div>
     );
   }
-  
-  export default Metros2;
+
+  Metros2.propTypes = {
+    selectMetros2: PropTypes.string.isRequired,
+    metrosSeleccionados: PropTypes.string.isRequired,
+  };  
+
+export default Metros2;
