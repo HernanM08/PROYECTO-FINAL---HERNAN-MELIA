@@ -11,7 +11,18 @@ export default function Historial() {
             metros2: "",
             poliza: "",
         }
-    )
+    );
+
+    const borrarHistorial = () => {
+        const confirmacion = window.confirm(
+            "¿Está seguro que desea borrar el historial de Cotizaciones?"
+        );
+
+        if (confirmacion) {
+            localStorage.removeItem("historialCotizaciones");
+            setHistorialCotizaciones([]);
+        }
+    };
 
     return (
         <div>
@@ -40,6 +51,11 @@ export default function Historial() {
                         ))}
                     </tbody>
                 </table>
+                <div className="div-borrar-historial">
+                    <button onClick={borrarHistorial} className="button button-outline">
+                        Borrar Historial
+                    </button>
+                </div>
                 <div className="center separador">
                     <Link to="/"><button className="button button-outline">VOLVER</button></Link>
                 </div>

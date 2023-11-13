@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Neohellenic:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css');
 @import url('https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css');
 
 * {
-    font-family:'Roboto', Arial, Helvetica, sans-serif;
+    font-family: 'GFS Neohellenic', sans-serif;
 }
 
 html {
     min-height: 100%;
-    background-color: rgb(126, 88, 161);
+    background-color: #003781;
 }
 
 .center {
@@ -20,9 +21,22 @@ h1 {
     color: whitesmoke;
 }
 
+img {
+    width: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.imagenHouse {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
 label {
     font-weight: 400;
     color: black;
+    font-size: x-large;
 }
 
 .div-cotizador {
@@ -53,7 +67,8 @@ div.historial span {
 
 select, input {
     min-width: 50% !important;
-    width: 70% !important;
+    width: 60% !important;
+    font-size: large;
 }
 
 .separador {
@@ -61,7 +76,7 @@ select, input {
 }
 
 .importe {
-    color: blueviolet;
+    color: #003781;
     font-size: x-large;
     font-weight: 700;
 }
@@ -72,13 +87,19 @@ select, input {
     cursor: pointer;
 }
 
+.guardarocultar {
+    background-color: #003781;
+    margin-left: 20px;
+    height: auto;
+    font-size: large;
+}
 /*.ocultar {
     display: none;
 }*/
 
 button:hover {
     color: whitesmoke !important;
-    background-color: blueviolet !important;
+    background-color: #003781 !important;
 }
 
 button:active {

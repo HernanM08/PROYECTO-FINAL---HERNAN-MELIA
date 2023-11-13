@@ -11,7 +11,7 @@ function Metros2({ selectMetros2, metrosSeleccionados }) {
 
   Metros2.propTypes = {
     selectMetros2: PropTypes.string.isRequired,
-    metrosSeleccionados: PropTypes.string.isRequired,
+    metrosSeleccionados: PropTypes.func.isRequired,
   };  
 
 export default Metros2;

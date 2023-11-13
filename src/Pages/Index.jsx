@@ -6,6 +6,7 @@ import Ubicacion from "../Components/Ubicacion";
 import Metros2 from "../Components/Metros2";
 import jsonPropiedad from "../propiedad.json";
 import jsonUbicacion from "../ubicacion.json";
+import House from "../img/house-lock-solid.svg";
 
 export default function Index() {
 
@@ -49,15 +50,25 @@ export default function Index() {
         poliza: 0
         });
 
-    const cotizarPoliza = () => {
-        if (parseFloat(selectMetros2) >= 20 && parseFloat(selectMetros2) <= 500) {
-        const poliza = data.costoM2 * parseFloat(selectedPropiedad) * parseFloat(selectedUbicacion) * parseFloat(selectMetros2);
+const dataCompleta = () =>
+    selectedPropiedad !== "" &&
+    selectedUbicacion !== "" &&
+    parseFloat(selectMetros2) >= 20 && parseFloat(selectMetros2) <= 500
+      ? true
+      : false;
+
+  const cotizarPoliza = () => (dataCompleta() ? cotizar() : alarma());
+
+  const [sinDatos, setSinDatos] = useState(true);
+  const alarma = () => {
+    setSinDatos();
+  };
+  const cotizar = () => {
+    setSinDatos(true); 
+        
+    const poliza = data.costoM2 * parseFloat(selectedPropiedad) * parseFloat(selectedUbicacion) * parseFloat(selectMetros2);
              setData({ ...data, poliza:poliza });
-        } else {
-            alert("Ingrese un valor de metros cuadrados entre 20 y 500")
-        }
-    }
-    
+  };
     const guardarHistorial = () => {
         const cotizacion = {
             fechaCotizacion: new Date().toLocaleString(),
@@ -71,6 +82,7 @@ export default function Index() {
             JSON.parse(localStorage.getItem("historialCotizaciones")) || [];
         historialCotizaciones.push(cotizacion);
         localStorage.setItem("historialCotizaciones", JSON.stringify(historialCotizaciones));
+        window.location.reload();
     }
 
     return (
@@ -80,20 +92,25 @@ export default function Index() {
                     <span title="Ver Historial">📋</span>
                 </Link>
             </div>
-            <h1 className="center separador">Seguros del hogar 🏡</h1>
+            <h1 className="center separador">Alliance - Seguros para el Hogar</h1>
+            <div className="imagenHouse">
+                <img src={House} alt="imghouse" />
+            </div>
             <div className=" center div-cotizador">
-                <h2 className="center separador">Completa los datos solicitados</h2>
+                <h2 className="center separador">Complete los datos para cotizar su seguro de hogar</h2>
              
                 <Propiedad
                 selectedPropiedad={selectedPropiedad}
                 propiedadSelectedChange={propiedadSelectedChange}
                 datosPropiedad={datosPropiedad}
+                sinDatos={sinDatos}
                 />
 
                 <Ubicacion
                 selectedUbicacion={selectedUbicacion}
                 ubicacionSelectedChange={ubicacionSelectedChange}
                 datosUbicacion={datosUbicacion}
+                sinDatos={sinDatos}
                 />      
                 
                 <Metros2
@@ -106,7 +123,7 @@ export default function Index() {
                         <button onClick={cotizarPoliza} className="button button-outline">{""}Cotizar{""}</button>
                     </div>
                     <div className="center separador">
-                        <p className="importe">Precio estimado: ${""} <span id="valorPoliza">{data.poliza.toFixed(2)}</span><span className="guardar ocultar" onClick={guardarHistorial} title="Guardar en historial"> 💾 </span></p>
+                        <p className="importe">Precio estimado: ${""} <span id="valorPoliza">{data.poliza.toFixed(2)}</span><button className="guardarocultar" onClick={guardarHistorial} title="Guardar en historial">Registrar</button></p>
                     </div>
                 </div>
 
