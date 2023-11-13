@@ -8,8 +8,12 @@
 }
 
 html {
-    min-height: 100%;
+    height: 100%;
     background-color: #003781;
+    background-image: url(./img/segurohogar.jpg);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .center {
@@ -17,8 +21,11 @@ html {
 }
 
 h1 {
-    font-weight: 400;
-    color: whitesmoke;
+    font-weight: 500;
+    color: black;
+    display: flex;
+    justify-content: center;
+    padding-left: 200px;
 }
 
 img {
@@ -31,6 +38,11 @@ img {
     display: flex;
     justify-content: center;
     margin: 10px;
+}
+
+h2 {
+    font-weight: 500;
+    color: black;
 }
 
 label {
@@ -57,12 +69,14 @@ div.historial {
     float: right;
     padding: 6px;
     border-radius: 25px;
-    width: 55px;
+    font-size: xx-large;
 }
 
-div.historial span {
-    text-align: center !important;
-    font-size: xx-large;
+.botonHistorial {
+    background-color: #003781;
+    color: white;
+    border: 1px solid white;
+    font-size: large;
 }
 
 select, input {

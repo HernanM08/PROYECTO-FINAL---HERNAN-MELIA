@@ -53,15 +53,15 @@ export default function Index() {
 const dataCompleta = () =>
     selectedPropiedad !== "" &&
     selectedUbicacion !== "" &&
-    parseFloat(selectMetros2) >= 20 && parseFloat(selectMetros2) <= 500
+    parseFloat(selectMetros2) >= 20 
       ? true
       : false;
 
-  const cotizarPoliza = () => (dataCompleta() ? cotizar() : alarma());
+  const cotizarPoliza = () => (dataCompleta() ? cotizar() : alerta());
 
   const [sinDatos, setSinDatos] = useState(true);
-  const alarma = () => {
-    setSinDatos();
+  const alerta = () => {
+    setSinDatos(false);
   };
   const cotizar = () => {
     setSinDatos(true); 
@@ -89,7 +89,7 @@ const dataCompleta = () =>
         <div>
            <div className="historial">
                 <Link to="/historial">
-                    <span title="Ver Historial">📋</span>
+                    <button title="Ver Historial" className="botonHistorial">Ver Historial</button>
                 </Link>
             </div>
             <h1 className="center separador">Alliance - Seguros para el Hogar</h1>
@@ -116,6 +116,7 @@ const dataCompleta = () =>
                 <Metros2
                 selectMetros2={selectMetros2}
                 metrosSeleccionados={metrosSeleccionados}
+                sinDatos={sinDatos}
                 />
 
                 <div>
